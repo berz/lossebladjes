@@ -1,0 +1,104 @@
+{% extends "template.html" %}
+{% set title = blad.name %}
+{% set active_page = "bladjes" %}
+{% set parent = [("bladjes", "Bladjes")] %}
+
+{% block content %}
+    <div class="row top-margin">
+        <div class="col-md-6">
+        {% if prev %}
+            <a class="btn btn-default pull-left" href="{{url_for('blad', blad_id=prev.id)}}">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                vorig bladje: {{prev.name}}
+            </a>
+        {% endif %}
+        </div>
+        <div class="col-md-6">
+        {% if next %}
+            <a class="btn btn-default pull-right" href="{{url_for('blad', blad_id=next.id)}}">
+                volgend bladje: {{next.name}}
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        {% endif %}
+        </div>
+    </div>
+
+    <h1>{{blad.name}}</h1>
+
+    <div class="row top-margin">
+        <div id='meta' class="col-sm-6">
+            <dl class="dl-horizontal">
+                <dt>auteur</dt><dd>{% if blad.auteur %}{{blad.auteur}}{% else %}onbekend{% endif %}</dd>
+                <dt>melodie</dt><dd>{% if blad.melodie %}{{blad.melodie}}{% else %}onbekend{% endif %}</dd>
+                <dt>voorgedragen op</dt><dd>{% if blad.voorgedragen_op %}{{blad.voorgedragen_op}}{% else %}onbekend{% endif %}</dd>
+<!--            {% if blad.toegevoegd_op %}<dt>toegevoegd op</dt><dd>{{blad.toegevoegd_op}}</dd>{% endif %} -->
+            </dl>
+            {% if blad.extra %}<p>{{blad.extra}}</p>{% endif %}
+        </div>
+        <div id="scans" class="col-sm-6">
+            <div class="row center-block" style="display:table">
+
+                {% if blad.scans|length > 1 %}
+                <ol class="carousel-indicators">
+                    {% for scan in blad.scans %}
+                    <li data-target="#scans" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+                {% endif %}
+
+                {% if blad.scans|length > 1 %}
+                <a href="#scans" data-slide="prev" style="display: table-cell; vertical-align:middle; width:5%">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </button>
+                </a>
+                {% endif %}
+
+                <div id="scans" class="carousel slide col-xs-8; width:90%" data-interval='100'>
+                    <div class="carousel-inner">
+                        {% for scan in blad.scans %}
+                        <div class="item text-center {% if loop.first %}active{% endif %}">
+                            <img src="{{ url_for('static', filename='scans/' + scan.filename)}}" alt="{{blad.name}}" class="img-responsive small center-block">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if blad.scans|length > 1 %}
+                <a href="#scans" data-slide="next" style="display: table-cell; vertical-align:middle; width:5%">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </button>
+                </a>
+                {% endif %}
+
+            </div>
+            <div class="top-margin text-center">
+                <a id='hide' href='#'>
+                    <button type="button" class="btn btn-default">
+                        Zoom afbeelding
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if blad.scans|length > 1 %}
+        $('.carousel').carousel({
+            interval: 5000
+        })
+        {% endif %}
+
+        $('#hide').on("click", function(){
+            $('#meta').toggle();
+            $('#scans').toggleClass('col-sm-6').toggleClass('col-sm-12');
+            $('#hide .glyphicon').toggleClass('glyphicon-zoom-in').toggleClass('glyphicon-zoom-out');
+            $('#scans .carousel-inner img').toggleClass('small');
+            $('.carousel').carousel('pause')
+        });
+    </script>
+{% endblock %}

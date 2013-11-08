@@ -1,0 +1,7 @@
+flask
+flup
+sqlalchemy <= 0.7.10
+Flask-SQLAlchemy
+sqlalchemy_migrate
+imp
+migrate

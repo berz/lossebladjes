@@ -1,0 +1,41 @@
+.top-margin { 
+    margin-top: 20px; 
+}
+
+.small { 
+    max-height: 400px; 
+}
+
+.carousel-control { 
+    background-image: none !important;
+}
+
+.center-y {
+    vertical-align:middle;
+}
+
+.white {
+  color: #fff;
+}
+
+.post-date {
+    display: block;
+    margin: -10px 0 10px;
+    color: #aaa;
+}
+
+body {
+    background-color: #eee;
+    padding-top: 50px; /* for the fixed menu */
+}
+}
+
+.wrapper {
+    background-color: #fff;
+    max-width:960px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}

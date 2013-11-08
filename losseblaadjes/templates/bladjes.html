@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% set title = "bladjes" %}
+{% set active_page = "bladjes" %}
+
+{% block content %}
+    <h1>Alle losse bladjes</h1>
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>naam</th>
+                <th>auteur</th>
+                <th>datum</th>
+                <th>toegevoegd op</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blad in bladeren %}
+            <tr>
+                <td><a href="{{ url_for('blad', blad_id=blad.id) }}">{{ blad.name|truncate(50) }}</a></td>
+                <td>{% if blad.auteur %}{{blad.auteur|truncate(45)}}{% endif %}</td>
+                <td>{% if blad.voorgedragen_op %}{{blad.voorgedragen_op}}{% endif %}</td>
+                <td>{{ blad.toegevoegd_op }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
