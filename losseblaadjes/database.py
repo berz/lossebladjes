@@ -9,11 +9,12 @@ db = SQLAlchemy(app)
 
 class Blad(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String())
+    titel = db.Column(db.String())
     auteur = db.Column(db.String())
     melodie = db.Column(db.String())
     toegevoegd_op = db.Column(db.String())
     voorgedragen_op = db.Column(db.String())
+    eigenaar = db.Column(db.String())
     scans = db.relationship('Scan', backref=db.backref('blad'))
     extra = db.Column(db.String())
 
