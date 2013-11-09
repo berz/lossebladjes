@@ -1,5 +1,5 @@
 {% extends "template.html" %}
-{% set title = blad.name %}
+{% set title = blad.titel %}
 {% set active_page = "bladjes" %}
 {% set parent = [("bladjes", "Bladjes")] %}
 
@@ -9,31 +9,32 @@
         {% if prev %}
             <a class="btn btn-default pull-left" href="{{url_for('blad', blad_id=prev.id)}}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-                vorig bladje: {{prev.name}}
+                vorig bladje: {{prev.titel}}
             </a>
         {% endif %}
         </div>
         <div class="col-md-6">
         {% if next %}
             <a class="btn btn-default pull-right" href="{{url_for('blad', blad_id=next.id)}}">
-                volgend bladje: {{next.name}}
+                volgend bladje: {{next.titel}}
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         {% endif %}
         </div>
     </div>
 
-    <h1>{{blad.name}}</h1>
+    <h1>{{blad.titel}}</h1>
 
     <div class="row top-margin">
         <div id='meta' class="col-sm-6">
             <dl class="dl-horizontal">
-                <dt>auteur</dt><dd>{% if blad.auteur %}{{blad.auteur}}{% else %}onbekend{% endif %}</dd>
+                <dt>tekst</dt><dd>{% if blad.auteur %}{{blad.auteur}}{% else %}auteur onbekend{% endif %}</dd>
                 <dt>melodie</dt><dd>{% if blad.melodie %}{{blad.melodie}}{% else %}onbekend{% endif %}</dd>
-                <dt>voorgedragen op</dt><dd>{% if blad.voorgedragen_op %}{{blad.voorgedragen_op}}{% else %}onbekend{% endif %}</dd>
+                {% if blad.voorgedragen_op %}<dt>voorgedragen op</dt><dd>{{blad.voorgedragen_op}}</dd>{% endif %}
+                {% if blad.eigenaar %}<dt>trotse eigenaar</dt><dd>{{blad.eigenaar}}</dd>{% endif %}
 <!--            {% if blad.toegevoegd_op %}<dt>toegevoegd op</dt><dd>{{blad.toegevoegd_op}}</dd>{% endif %} -->
             </dl>
-            {% if blad.extra %}<p>{{blad.extra}}</p>{% endif %}
+            {% if blad.extra %}<p>{{ blad.extra|safe }}</p>{% endif %}
         </div>
         <div id="scans" class="col-sm-6">
             <div class="row center-block" style="display:table">
@@ -58,7 +59,7 @@
                     <div class="carousel-inner">
                         {% for scan in blad.scans %}
                         <div class="item text-center {% if loop.first %}active{% endif %}">
-                            <img src="{{ url_for('static', filename='scans/' + scan.filename)}}" alt="{{blad.name}}" class="img-responsive small center-block">
+                            <img src="{{ url_for('static', filename='scans/' + scan.filename)}}" alt="{{blad.titel}}" class="img-responsive small center-block">
                         </div>
                         {% endfor %}
                     </div>

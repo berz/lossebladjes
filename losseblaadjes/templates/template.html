@@ -4,8 +4,8 @@
     {% set title = title|default('') -%}
     <title>Lossebladjes{% if title %} - {{ title }}{% endif %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='overrides.css') }}">
     
@@ -42,10 +42,10 @@
     </nav>
     <div class="container wrapper">
     <ol class="breadcrumb">
-        <li><a href="{{url_for('index')}}">losse bladjes</a></li>
+        <li><a href="{{url_for('index')}}">Losse bladjes</a></li>
         {% if parent -%}
-        {% for name, url in parent %}
-        <li><a href="{{url}}">{{name}}</a></li>
+        {% for page, name in parent %}
+        <li><a href="{{ url_for(page) }}">{{name}}</a></li>
         {% endfor %}
         {% endif %}
         <li class="active">{{ title }}</li>

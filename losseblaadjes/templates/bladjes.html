@@ -1,5 +1,5 @@
 {% extends "template.html" %}
-{% set title = "bladjes" %}
+{% set title = "Bladjes" %}
 {% set active_page = "bladjes" %}
 
 {% block content %}
@@ -8,17 +8,17 @@
         <thead>
             <tr>
                 <th>naam</th>
-                <th>auteur</th>
-                <th>datum</th>
+                <th>tekst</th>
+                <th>melodie</th>
                 <th>toegevoegd op</th>
             </tr>
         </thead>
         <tbody>
-        {% for blad in bladeren %}
+        {% for blad in bladeren|sort(attribute='titel') %}
             <tr>
-                <td><a href="{{ url_for('blad', blad_id=blad.id) }}">{{ blad.name|truncate(50) }}</a></td>
+                <td><a href="{{ url_for('blad', blad_id=blad.id) }}">{{ blad.titel|truncate(50) }}</a></td>
                 <td>{% if blad.auteur %}{{blad.auteur|truncate(45)}}{% endif %}</td>
-                <td>{% if blad.voorgedragen_op %}{{blad.voorgedragen_op}}{% endif %}</td>
+                <td>{% if blad.melodie %}{{blad.melodie|truncate(45)}}{% endif %}</td>
                 <td>{{ blad.toegevoegd_op }}</td>
             </tr>
         {% endfor %}

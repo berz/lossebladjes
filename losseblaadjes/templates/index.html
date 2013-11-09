@@ -1,20 +1,27 @@
 {% extends "template.html" %}
 {% set active_page = "index" %}
-{% set title = "nieuws" %}
+{% set title = "Nieuws" %}
 
 {% block content %}
-<div class="jumbotron">
-<h1>Losse bladjes</h1>
-<p>Een poging om de losse bladjes die in iedereens codex zitten te delen en documenteren.</p>
-<p><a class="btn btn-primary btn-lg" role="button" href="{{ url_for('bladjes') }}">Bekijk de bladjes</a></p>
+<div class="jumbotron clearfix">
+<!--     <img style="float:right; height:100%" src="{{ url_for('static', filename='codex_kvhv.png') }}"> -->
+    <h1>Losse bladjes</h1>
+    <p>Een poging om de losse bladjes die in iedereens codex zitten te verzamelen en documenteren.</p>
+    <a class="btn btn-primary btn-lg" role="button" href="{{ url_for('bladjes') }}">Bekijk de bladjes</a>
+
 </div>
 
 <h2>Opdracht</h2>
-<p>iets over de opdracht ...</p>
+<p>Elkeen die geerne cantust kent het fenomeen: op een cantus worden liederteksten uitgedeeld en gezongen, waarna je deze prompt in je codex steekt. Na een tijd krijgen deze losse bladjes ezelsoren, scheuren ze, of gaan ze verloren. Dit is spijtig, aangezien deze bladjes vaak heel waardevol zijn. Toen ik me liet dopen bij Castrum kreeg ik als ontgroeningsopdracht van mijn peter, de kleine, en mijn toezichthoudende meter, vrouwe Bambi, de opdracht om deze bladjes te vereeuwigen.</p>
+<p>Ik probeer me hierbij vooral te richten op ongepubliceerde en onbekende teksten, die door comilito's zelf geschreven zijn ter ere van een bepaalde gebeurtenis.</p>
 
 <h2>Nieuws</h2>
 
 {% set posts = [
+    ('Nieuwe bladjes', 
+    '8 november 2013', 
+    '<p>Tijdens de Castrum novembercantus heb ik nog wat bladjes kunnen inscannen die in Balor zijn codex zaten. Deze zijn ondertussen toegevoegd. Bedankt Balor!</p>'),
+
     ('Castrum novembercantus', 
     '3 november 2013', 
     '<p>Maandag 4 november zal ik tijdens de cantus van Castrum aanwezig zijn met een scanner om losse bladjes te vereeuwigen. Neem je losse bladjes dus zeker mee!</p>'),
@@ -25,7 +32,7 @@
     <p><a href="' + url_for('contact') + '">Laat me iets weten</a> indien deze website niet werkt voor jouw.</p>
     <p>Ik ben nog van plan om enkele aspecten van deze website te verbeteren: </p>
     <ul>
-        <li>Meer losse bladjes scannen!</li>
+        <li>Meer losse bladjes verzamelen</li>
         <li>Meer info toevoegen en verzamelen over de bladjes die ik heb</li>
         <li>Website bruikbaar maken op smartphones</li>
         <li>Mogelijk maken om zelf een blad te uploaden</li>

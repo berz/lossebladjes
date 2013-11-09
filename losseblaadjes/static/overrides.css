@@ -10,10 +10,6 @@
     background-image: none !important;
 }
 
-.center-y {
-    vertical-align:middle;
-}
-
 .white {
   color: #fff;
 }
@@ -25,9 +21,7 @@
 }
 
 body {
-    background-color: #eee;
     padding-top: 50px; /* for the fixed menu */
-}
 }
 
 .wrapper {
