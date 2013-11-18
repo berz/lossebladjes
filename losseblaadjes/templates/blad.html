@@ -43,7 +43,7 @@
                 <button id='show-form' class="btn btn-primary">Info toevoegen</button>
             </div>
             <div id='form' method='post' {% if not form.errors %}hidden{% endif %}>
-                <form method="post" action="{{ request.path }}" role="form">
+                <form method="post" role="form">
                     {{ form.hidden_tag() }}
                     {{ render_field(form.naam, 'text', 'Naam') }}
                     {{ render_field(form.email, 'email', 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.') }}
