@@ -6,4 +6,5 @@ sqlalchemy_migrate
 migrate
 wtforms
 flask_wtf
+Flask-Mail
 imp
