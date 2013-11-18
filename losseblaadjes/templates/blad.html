@@ -1,4 +1,5 @@
 {% extends "template.html" %}
+{% from "_macros.html" import render_field %}
 {% set title = blad.titel %}
 {% set active_page = "bladjes" %}
 {% set parent = [("bladjes", "Bladjes")] %}
@@ -35,6 +36,21 @@
 <!--            {% if blad.toegevoegd_op %}<dt>toegevoegd op</dt><dd>{{blad.toegevoegd_op}}</dd>{% endif %} -->
             </dl>
             {% if blad.extra %}<p>{{ blad.extra|safe }}</p>{% endif %}
+
+            <hr>
+            <p>Weet je meer over dit lied? Laat het me weten!</p>
+            <div id='pre-form' {% if form.errors %}hidden{% endif %}>
+                <button id='show-form' class="btn btn-primary">Info toevoegen</button>
+            </div>
+            <div id='form' method='post' {% if not form.errors %}hidden{% endif %}>
+                <form method="post" action="{{ request.path }}" role="form">
+                    {{ form.hidden_tag() }}
+                    {{ render_field(form.naam, 'text', 'Naam') }}
+                    {{ render_field(form.email, 'email', 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.') }}
+                    {{ render_field(form.opmerking, 'text', 'Uw opmerking') }}
+                    <button type="submit" class="btn btn-primary">Versturen</button>
+                </form>
+            </div>
         </div>
         <div id="scans" class="col-sm-6">
             <div class="row center-block" style="display:table">
@@ -100,6 +116,11 @@
             $('#hide .glyphicon').toggleClass('glyphicon-zoom-in').toggleClass('glyphicon-zoom-out');
             $('#scans .carousel-inner img').toggleClass('small');
             $('.carousel').carousel('pause')
+        });
+
+        $('#show-form').on("click", function(){
+            $('#pre-form').toggle();
+            $('#form').toggle();
         });
     </script>
 {% endblock %}
