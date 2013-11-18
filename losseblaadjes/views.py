@@ -40,6 +40,7 @@ def blad(blad_id):
                    subject = "Lossebladjes: aanvulling op %s" % blad.titel,
                    body = body)
         flash('Uw opmerking werd genoteerd, de info zal spoedig verwerkt worden.', 'alert-success')
+        return redirect(url_for('blad', blad_id=blad_id))
     elif form.errors:
         flash(u'Uw opmerking kon niet verwerkt worden, omdat één of meerdere velden fouten bevatten.', 'alert-danger')
 
