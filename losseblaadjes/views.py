@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template, flash
+from flask import render_template, flash, request
+import datetime
 
 from losseblaadjes import app
 from losseblaadjes.database import Blad, Scan
 import losseblaadjes.forms as forms
+from losseblaadjes.mail import send_email
 
 @app.route('/')
 def index():
@@ -24,6 +26,19 @@ def blad(blad_id):
 
     form = forms.OpmerkingBijBlad()
     if form.validate_on_submit():
+        naam = form.naam.data
+        email = form.email.data or 'geen email adres'
+        opmerking = form.opmerking.data
+        datum = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M")
+
+        body = "%s (%s) heeft op %s de volgende aanvulling toegevoegd op het lied %s [0]:\n" % (naam, email, datum, blad.titel)
+        body += '\n"%s"\n' % opmerking
+        body += "\n[0] %s" % request.base_url
+
+        send_email(recipients = [app.config['ADMIN_EMAIL']],
+                   sender = ("%s (%s)" % (naam, email), app.config['ADMIN_EMAIL']),
+                   subject = "Lossebladjes: aanvulling op %s" % blad.titel,
+                   body = body)
         flash('Uw opmerking werd genoteerd, de info zal spoedig verwerkt worden.', 'alert-success')
     elif form.errors:
         flash(u'Uw opmerking kon niet verwerkt worden, omdat één of meerdere velden fouten bevatten.', 'alert-danger')

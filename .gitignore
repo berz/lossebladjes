@@ -2,6 +2,7 @@
 *.py[cod]
 
 # files
+config.py
 pip-log.txt
 
 # directories
