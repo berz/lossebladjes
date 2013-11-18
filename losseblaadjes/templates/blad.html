@@ -26,8 +26,8 @@
 
     <h1>{{blad.titel}}</h1>
 
-    <div class="row top-margin">
-        <div id='meta' class="col-sm-6">
+    <div class="row">
+        <div id='meta' class="col-sm-6 top-margin">
             <dl class="dl-horizontal">
                 <dt>tekst</dt><dd>{% if blad.auteur %}{{blad.auteur}}{% else %}auteur onbekend{% endif %}</dd>
                 <dt>melodie</dt><dd>{% if blad.melodie %}{{blad.melodie}}{% else %}onbekend{% endif %}</dd>
@@ -52,7 +52,7 @@
                 </form>
             </div>
         </div>
-        <div id="scans" class="col-sm-6">
+        <div id="scans" class="col-sm-6  top-margin">
             <div class="row center-block" style="display:table">
 
                 {% if blad.scans|length > 1 %}
