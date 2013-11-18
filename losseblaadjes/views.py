@@ -10,7 +10,7 @@ from losseblaadjes.mail import send_email
 
 @app.route('/')
 def index():
-	return render_template("index.html")
+    return render_template("index.html")
 
 @app.route('/bladjes')
 def bladjes():

@@ -53,11 +53,11 @@
     {% for category, message in get_flashed_messages(with_categories=true) %}
     <div class="alert {{ category }}">{{ message }}</div>
     {% endfor %}
-	{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
     </div>
 
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
