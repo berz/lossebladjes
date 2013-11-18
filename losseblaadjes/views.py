@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template, flash, request
+from flask import render_template, flash, request, redirect, url_for
 import datetime
 
 from losseblaadjes import app
