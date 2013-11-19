@@ -3,7 +3,7 @@ from wtforms import TextField, TextAreaField, validators
 
 class OpmerkingBijBlad(Form):
     naam = TextField(
-        '(club)naam',
+        'naam',
         [validators.Required('Gelieve dit veld in te vullen.')])
     email = TextField(
         'email (optioneel)',
