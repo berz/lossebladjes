@@ -1,22 +1,25 @@
-{% macro render_field(field, type, placeholder, help='') %}
+{% macro render_errors(field) %}
+    {% for error in field.errors %}
+    <span class="help-block">{{ error }}</span>
+    {% endfor %}
+{% endmacro %}
+
+{% macro field_mixin(field, type, placeholder, help) %}
+    {# https://github.com/wtforms/wtforms/pull/17#issuecomment-28162938 #}
+    {% if field.flags.required %}
+        {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
+    {% else %}
+        {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
+    {% endif %}
+    {{ render_errors(field) }}
+    {% if help %}
+    <small class="help-block">{{help}}</small>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_field(field, type, placeholder='', help='') %}
     <div class="form-group {% if field.errors %}has-error{% endif %}">
         {{ field.label(class="control-label") }}
-        
-        {# 
-        if clause is needed because of https://github.com/wtforms/wtforms/pull/17#issuecomment-28162938 
-        can be removed when fix is applied
-        #}
-        {% if field.flags.required %}
-            {{ field(type=type, class="form-control", placeholder=placeholder, required=field.flags.required, **kwargs) }}
-        {% else %}
-            {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
-        {% endif %}
-        
-        {% for error in field.errors %}
-        <span class="help-block">{{ error }}</span>
-        {% endfor %}
-        {% if help %}
-        <small class="help-block">{{help}}</small>
-        {% endif %}
+        {{ field_mixin(field, type, placeholder, help='', **kwargs) }}
     </div>
 {% endmacro %}
