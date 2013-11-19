@@ -24,11 +24,6 @@ body {
     padding-top: 50px; /* for the fixed menu */
 }
 
-.wrapper {
-    background-color: #fff;
-    max-width:960px;
-}
-
 .starter-template {
   padding: 40px 15px;
   text-align: center;
