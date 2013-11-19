@@ -7,13 +7,13 @@
         can be removed when fix is applied
         #}
         {% if field.flags.required %}
-            {{ field(type=type, class="form-control", placeholder=placeholder, required=field.flags.required) }}
+            {{ field(type=type, class="form-control", placeholder=placeholder, required=field.flags.required, **kwargs) }}
         {% else %}
-            {{ field(type=type, class="form-control", placeholder=placeholder) }}
+            {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
         {% endif %}
         
         {% for error in field.errors %}
-            <span class="help-block">{{ error }}</span>
+        <span class="help-block">{{ error }}</span>
         {% endfor %}
         {% if help %}
         <small class="help-block">{{help}}</small>

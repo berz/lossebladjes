@@ -47,7 +47,7 @@
                     {{ form.hidden_tag() }}
                     {{ render_field(form.naam, 'text', 'Naam') }}
                     {{ render_field(form.email, 'email', 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.') }}
-                    {{ render_field(form.opmerking, 'text', 'Uw opmerking') }}
+                    {{ render_field(form.opmerking, 'text', 'Uw opmerking', rows=8) }}
                     <button type="submit" class="btn btn-primary">Versturen</button>
                 </form>
             </div>
