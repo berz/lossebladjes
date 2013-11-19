@@ -1,8 +1,56 @@
 {% extends "template.html" %}
-{% set title = "upload" %}
+{% set title = "Upload" %}
 {% set active_page = "upload" %}
+{% from "_macros.html" import render_field_hor, render_errors %}
 
 {% block content %}
-<h1>Losse bladjes</h1>
-<p>Upload pagina</p>
+<h1>Upload een bladje</h1>
+<p>Heb je een bladje dat hier nog niet staat? Stuur het me op en ik voeg het toe!</p>
+<p>Enkel de velden de meeste velden zijn optioneel, als je een blad en een naam opgeven is genoeg.Maar zou natuurlijk wel leuk zijn om zo veel mogelijk info te hebben over elk blad, dus vul deze in als je kan.</p>
+
+<form action="" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+    {{ form.hidden_tag() }}
+    <div class="form-group {% if form.attachment.errors %}has-error{% endif %}">
+        {{ form.attachment.label(class="col-sm-2 control-label") }}
+        <div class="col-sm-10">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <div class="btn btn-primary">
+                        Kies een bestand
+                        {{ form.attachment(class="upload", required=True) }}
+                    </div>
+                </div>
+                <span id="upload-file-info" class="form-control"></span>
+            </div>
+            {{ render_errors(form.attachment) }}
+            <small class="help-block">Enkel de volgende extensies zijn toegelaten: jpg, jpeg, png, gif, svg, bmp, pdf</small>
+        </div>
+    </div>
+
+    <hr>
+    {{ render_field_hor(form.naam, 'text', 'uw (club)naam') }}
+    {{ render_field_hor(form.email, 'email', 'uw e-mail adres', 'Deze informatie wordt enkel gebruikt om meer info te vragen over een bladje.') }}
+
+    <hr>
+    {{ render_field_hor(form.titel, 'text', 'naam van het lied') }}
+    {{ render_field_hor(form.auteur, 'text', 'auteur van de tekst, datum') }}
+    {{ render_field_hor(form.melodie, 'text', 'auteur van de melodie, datum, op de melodie van ...') }}
+    {{ render_field_hor(form.voorgedragen_op, 'text', 'voorgedragen ter ere van ... op ...') }}
+    {{ render_field_hor(form.extra, 'text', 'extra informatie over dit lied', rows=8) }}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary btn-lg">Versturen</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+{% block scripts %}
+<script>
+    $('#attachment').on("change", function(){
+        path = $(this).val();
+        filename = path.replace('C:\\fakepath\\','');
+        $('#upload-file-info').html(filename);
+        });
+</script>
 {% endblock %}

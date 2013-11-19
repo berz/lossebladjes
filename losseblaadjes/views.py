@@ -2,6 +2,7 @@
 
 from flask import render_template, flash, request, redirect, url_for
 import datetime
+from collections import namedtuple
 
 from losseblaadjes import app
 from losseblaadjes.database import Blad, Scan
@@ -46,9 +47,43 @@ def blad(blad_id):
 
     return render_template("blad.html", blad=blad, next=next, prev=prev, form=form)
 
-@app.route('/upload')
+@app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    return render_template("upload.html")
+    form = forms.UploadBlad()
+
+    if form.validate_on_submit():
+        Attachment = namedtuple('attachment', 'filename mime data')
+        attachments = []
+        for attachment in request.files.getlist('attachment'):
+            attachments.append(Attachment(attachment.filename,
+                                          attachment.content_type,
+                                          attachment.stream))
+
+        naam = form.naam.data
+        email = form.email.data or 'geen email adres'
+        datum = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M")
+
+        body = "%s (%s) heeft op %s een nieuw bladje ingezonden:\n\n" % (naam, email, datum)
+        body += 'aantal bijlages: %d\n' % (len(attachments))
+        all_fields =  ['titel', 'auteur', 'melodie', 'voorgedragen_op', 'extra']
+        active_fields = [field for field in all_fields if form[field].data != '']
+        for field in active_fields:
+            body += '%s:\n' % field
+            body += '"%s"\n' % form[field].data
+            body += '\n'
+
+        send_email(recipients = [app.config['ADMIN_EMAIL']],
+                   sender = ("%s (%s)" % (naam, email), app.config['ADMIN_EMAIL']),
+                   subject = u"Lossebladjes: nieuw blad geüpload",
+                   body = body,
+                   attachments = attachments)
+
+        flash(u'Uw blad werd succesvol geüpload, en zal spoedig verwerkt worden.', 'alert-success')
+        return redirect(url_for('upload'))
+    elif form.errors:
+        flash(u'Uw bladje kon niet verwerkt worden, omdat één of meerdere velden fouten bevatten.', 'alert-danger')
+
+    return render_template("upload.html", form=form)
 
 @app.route('/contact')
 def contact():
