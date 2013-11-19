@@ -42,7 +42,7 @@
             <div id='pre-form' {% if form.errors %}hidden{% endif %}>
                 <button id='show-form' class="btn btn-primary">Info toevoegen</button>
             </div>
-            <div id='form' method='post' {% if not form.errors %}hidden{% endif %}>
+            <div id='form' {% if not form.errors %}hidden{% endif %}>
                 <form method="post" role="form">
                     {{ form.hidden_tag() }}
                     {{ render_field(form.naam, 'text', 'Naam') }}
