@@ -37,7 +37,7 @@ def blad(blad_id):
         body += "\n[0] %s" % request.base_url
 
         send_email(recipients = [app.config['ADMIN_EMAIL']],
-                   sender = ("%s (%s)" % (naam, email), app.config['ADMIN_EMAIL']),
+                   sender = (naam, app.config['ADMIN_EMAIL']),
                    subject = "Lossebladjes: aanvulling op %s" % blad.titel,
                    body = body)
         flash('Uw opmerking werd genoteerd, de info zal spoedig verwerkt worden.', 'alert-success')
@@ -65,15 +65,15 @@ def upload():
 
         body = "%s (%s) heeft op %s een nieuw bladje ingezonden:\n\n" % (naam, email, datum)
         body += 'aantal bijlages: %d\n' % (len(attachments))
-        all_fields =  ['titel', 'auteur', 'melodie', 'voorgedragen_op', 'extra']
+        all_fields =  ['titel', 'auteur', 'melodie', 'voorgedragen_op']
         active_fields = [field for field in all_fields if form[field].data != '']
         for field in active_fields:
-            body += '%s:\n' % field
-            body += '"%s"\n' % form[field].data
-            body += '\n'
+            body += '%s: "%s"\n' % (field, form[field].data)
+        if form['extra'].data:
+            body += 'extra: "%s"\n' % form['extra'].data
 
         send_email(recipients = [app.config['ADMIN_EMAIL']],
-                   sender = ("%s (%s)" % (naam, email), app.config['ADMIN_EMAIL']),
+                   sender = (naam, app.config['ADMIN_EMAIL']),
                    subject = u"Lossebladjes: nieuw blad geüpload",
                    body = body,
                    attachments = attachments)
