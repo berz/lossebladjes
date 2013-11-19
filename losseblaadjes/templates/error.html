@@ -1,0 +1,21 @@
+{% extends "template.html" %}
+{% set title = "Oeps" %}
+{% set active_page = "" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Oeps</h1>
+
+    {% if "404" in error %}
+    <p>De pagina die U zoekt kon niet gevonden worden.</p>
+    <a href="{{ url_for('index') }}"><button class="btn btn-primary">terug naar de hoofdpagina</button></a>
+
+    {% elif '500' in error %}
+    <p>Er is een fout opgetreden.</p>
+    <p>Meer weet ik ook niet.</p>
+    <a href="{{ url_for('index') }}"><button class="btn btn-primary">Terug naar de hoofdpagina</button></a>
+    <a href="{{ url_for('contact') }}"><button class="btn btn-default">Neem contact op</button></a>
+    
+    {% endif %}
+</div>
+{% endblock %}

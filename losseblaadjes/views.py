@@ -53,3 +53,11 @@ def upload():
 @app.route('/contact')
 def contact():
     return render_template("contact.html")
+
+@app.errorhandler(404)
+def error404(error):
+    return render_template('error.html', error=str(error)), 404
+
+@app.errorhandler(500)
+def error500(error):
+    return render_template('error.html', error=str(error)), 500
