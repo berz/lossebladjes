@@ -8,7 +8,7 @@
 <p>Heb je een bladje dat hier nog niet staat? Stuur het me op en ik voeg het toe!</p>
 <p>Enkel de velden de meeste velden zijn optioneel, als je een blad en een naam opgeven is genoeg.Maar zou natuurlijk wel leuk zijn om zo veel mogelijk info te hebben over elk blad, dus vul deze in als je kan.</p>
 
-<form action="" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+<form method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
     {{ form.hidden_tag() }}
     <div class="form-group {% if form.attachment.errors %}has-error{% endif %}">
         {{ form.attachment.label(class="col-sm-2 control-label") }}

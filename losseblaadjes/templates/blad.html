@@ -35,7 +35,7 @@
                 {% if blad.eigenaar %}<dt>trotse eigenaar</dt><dd>{{blad.eigenaar}}</dd>{% endif %}
 <!--            {% if blad.toegevoegd_op %}<dt>toegevoegd op</dt><dd>{{blad.toegevoegd_op}}</dd>{% endif %} -->
             </dl>
-            {% if blad.extra %}<p>{{ blad.extra|safe }}</p>{% endif %}
+            {% if blad.extra %}{{ blad.extra|safe }}{% endif %}
 
             <hr>
             <p>Weet je meer over dit lied? Laat het me weten!</p>
@@ -71,7 +71,7 @@
                 </a>
                 {% endif %}
 
-                <div id="scans" class="carousel slide col-xs-8; width:90%" data-interval='100'>
+                <div class="carousel slide col-xs-8; width:90%" data-interval='100'>
                     <div class="carousel-inner">
                         {% for scan in blad.scans %}
                         <div class="item text-center {% if loop.first %}active{% endif %}">
@@ -91,11 +91,9 @@
 
             </div>
             <div class="top-margin text-center">
-                <a id='hide' href='#'>
-                    <button type="button" class="btn btn-default">
+                <a id='hide' href='#' type="button" class="btn btn-default">
                         Zoom afbeelding
                         <span class="glyphicon glyphicon-zoom-in"></span>
-                    </button>
                 </a>
             </div>
         </div>
