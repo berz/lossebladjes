@@ -4,12 +4,12 @@
     {% endfor %}
 {% endmacro %}
 
-{% macro field_mixin(field, type, placeholder, help) %}
+{% macro field_mixin(field, placeholder, help) %}
     {# https://github.com/wtforms/wtforms/pull/17#issuecomment-28162938 #}
     {% if field.flags.required %}
-        {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
+        {{ field(class="form-control", placeholder=placeholder, **kwargs) }}
     {% else %}
-        {{ field(type=type, class="form-control", placeholder=placeholder, **kwargs) }}
+        {{ field(class="form-control", placeholder=placeholder, **kwargs) }}
     {% endif %}
     {{ render_errors(field) }}
     {% if help %}
@@ -17,18 +17,18 @@
     {% endif %}
 {% endmacro %}
 
-{% macro render_field(field, type, placeholder='', help='') %}
+{% macro render_field(field, placeholder='', help='') %}
     <div class="form-group {% if field.errors %}has-error{% endif %}">
         {{ field.label(class="control-label") }}
-        {{ field_mixin(field, type, placeholder, help='', **kwargs) }}
+        {{ field_mixin(field, placeholder, help='', **kwargs) }}
     </div>
 {% endmacro %}
 
-{% macro render_field_hor(field, type, placeholder, help='') %}
+{% macro render_field_hor(field, placeholder, help='') %}
     <div class="form-group {% if field.errors %}has-error{% endif %}">
         {{ field.label(class="col-sm-2 control-label") }}
         <div class="col-sm-10">
-            {{ field_mixin(field, type, placeholder, help='', **kwargs) }}
+            {{ field_mixin(field, placeholder, help='', **kwargs) }}
         </div>
     </div>
 {% endmacro %}

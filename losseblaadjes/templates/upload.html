@@ -28,15 +28,15 @@
     </div>
 
     <hr>
-    {{ render_field_hor(form.naam, 'text', 'uw (club)naam') }}
-    {{ render_field_hor(form.email, 'email', 'uw e-mail adres', 'Deze informatie wordt enkel gebruikt om meer info te vragen over een bladje.') }}
+    {{ render_field_hor(form.naam, 'uw (club)naam') }}
+    {{ render_field_hor(form.email, 'uw e-mail adres', 'Deze informatie wordt enkel gebruikt om meer info te vragen over een bladje.', type='email') }}
 
     <hr>
-    {{ render_field_hor(form.titel, 'text', 'naam van het lied') }}
-    {{ render_field_hor(form.auteur, 'text', 'auteur van de tekst, datum') }}
-    {{ render_field_hor(form.melodie, 'text', 'auteur van de melodie, datum, op de melodie van ...') }}
-    {{ render_field_hor(form.voorgedragen_op, 'text', 'voorgedragen ter ere van ... op ...') }}
-    {{ render_field_hor(form.extra, 'text', 'extra informatie over dit lied', rows=8) }}
+    {{ render_field_hor(form.titel, 'naam van het lied') }}
+    {{ render_field_hor(form.auteur, 'auteur van de tekst, datum') }}
+    {{ render_field_hor(form.melodie, 'auteur van de melodie, datum, op de melodie van ...') }}
+    {{ render_field_hor(form.voorgedragen_op, 'voorgedragen ter ere van ... op ...') }}
+    {{ render_field_hor(form.extra, 'extra informatie over dit lied', rows=8) }}
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary btn-lg">Versturen</button>

@@ -45,9 +45,9 @@
             <div id='form' {% if not form.errors %}hidden{% endif %}>
                 <form method="post" role="form">
                     {{ form.hidden_tag() }}
-                    {{ render_field(form.naam, 'text', 'Naam') }}
-                    {{ render_field(form.email, 'email', 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.') }}
-                    {{ render_field(form.opmerking, 'text', 'Uw opmerking', rows=8) }}
+                    {{ render_field(form.naam, 'Naam') }}
+                    {{ render_field(form.email, 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.', type='email') }}
+                    {{ render_field(form.opmerking, 'Uw opmerking', rows=8) }}
                     <button type="submit" class="btn btn-primary">Versturen</button>
                 </form>
             </div>
