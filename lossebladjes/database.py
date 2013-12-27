@@ -1,6 +1,6 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 
-from losseblaadjes import app
+from lossebladjes import app
 
 
 db = SQLAlchemy(app)

@@ -4,10 +4,10 @@ from flask import render_template, flash, request, redirect, url_for
 import datetime
 from collections import namedtuple
 
-from losseblaadjes import app
-from losseblaadjes.database import Blad, Scan
-import losseblaadjes.forms as forms
-from losseblaadjes.mail import send_email
+from lossebladjes import app
+from lossebladjes.database import Blad, Scan
+import lossebladjes.forms as forms
+from lossebladjes.mail import send_email
 
 @app.route('/')
 def index():

@@ -3,7 +3,7 @@ from threading import Thread
 from flask import copy_current_request_context
 from flask.ext.mail import Message
 
-from losseblaadjes import mail
+from lossebladjes import mail
 
 def send_email(recipients, sender, subject, body, attachments=[]):
     """Send mail asynchronously."""

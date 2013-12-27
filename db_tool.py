@@ -4,7 +4,7 @@ import os
 import imp
 from migrate.versioning import api
 
-from losseblaadjes.database import db
+from lossebladjes.database import db
 
 from config import SQLALCHEMY_DATABASE_URI
 from config import SQLALCHEMY_MIGRATE_REPO

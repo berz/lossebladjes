@@ -10,7 +10,7 @@ from flup.server.fcgi import WSGIServer
 
 sys.path.insert(0, path.dirname(path.abspath( __file__ )))
 
-from losseblaadjes import app
+from lossebladjes import app
 
 if __name__ == '__main__':
     WSGIServer(app).run()
