@@ -6,4 +6,4 @@ app.config.from_object('config')
 
 activate()
 
-app.run()
+app.run(port=5001)
