@@ -22,3 +22,9 @@ class Scan(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String)
     blad_id = db.Column(db.Integer, db.ForeignKey('blad.id'))
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    date = db.Column(db.String)
+    content = db.Column(db.String)

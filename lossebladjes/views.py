@@ -5,13 +5,14 @@ import datetime
 from collections import namedtuple
 
 from lossebladjes import app
-from lossebladjes.database import Blad, Scan
+from lossebladjes.database import Blad, Scan, Post
 import lossebladjes.forms as forms
 from lossebladjes.mail import send_email
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    posts = reversed(Post.query.all())
+    return render_template("index.html", posts=posts)
 
 @app.route('/bladjes')
 def bladjes():

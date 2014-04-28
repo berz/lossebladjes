@@ -29,34 +29,11 @@
 </p>
 
 <h2>Nieuws</h2>
-
-{% set posts = [
-    ('Nieuwe bladjes', 
-    '8 november 2013', 
-    '<p>Tijdens de Castrum novembercantus heb ik nog wat bladjes kunnen inscannen die in Balor zijn codex zaten. Deze zijn ondertussen toegevoegd. Bedankt Balor!</p>'),
-
-    ('Castrum novembercantus', 
-    '3 november 2013', 
-    '<p>Maandag 4 november zal ik tijdens de cantus van Castrum aanwezig zijn met een scanner om losse bladjes te vereeuwigen. Neem je losse bladjes dus zeker mee!</p>'),
-    
-    ('Online!', 
-    '3 november 2013', 
-    '<p>De bladjes die ik tot nu toe ingescanned heb kunnen nu online bekeken worden!</p>
-    <p><a href="' + url_for('contact') + '">Laat me iets weten</a> indien deze website niet werkt voor jouw.</p>
-    <p>Ik ben nog van plan om enkele aspecten van deze website te verbeteren: </p>
-    <ul>
-        <li>Meer losse bladjes verzamelen</li>
-        <li>Meer info toevoegen en verzamelen over de bladjes die ik heb</li>
-        <li>Website bruikbaar maken op smartphones</li>
-        <li>Mogelijk maken om zelf een blad te uploaden</li>
-    </ul>')
-    ] -%}
-
-{% for title, date, content in posts %}
+{% for post in posts %}
 <div class="post">
-  <h3>{{ title }}</h3>
-  <span class="post-date">{{ date }}</span>
-  {{ content|safe }}
+    <h3>{{ post.title }}</h3>
+    <span class="post-date">{{ post.date }}</span>
+    {{ post.content|safe }}
 </div>
 {% endfor %}
 
