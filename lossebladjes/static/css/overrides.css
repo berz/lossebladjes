@@ -2,6 +2,19 @@
     margin-top: 20px; 
 }
 
+.fill {
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.height-responsive {
+    width: auto !important;
+    height: 225px !important;
+    max-height: 225px !important;
+}
+
 .small { 
     max-height: 400px; 
 }
