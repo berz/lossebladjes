@@ -54,22 +54,24 @@
 <!--            {% if blad.toegevoegd_op %}<dt>toegevoegd op</dt><dd>{{blad.toegevoegd_op}}</dd>{% endif %} -->
             </dl>
             {% if blad.extra %}{{ blad.extra|safe }}{% endif %}
-
-            <hr>
-            <p>Weet je meer over dit lied? Laat het me weten!</p>
-            <div id='pre-form' {% if form.errors %}hidden{% endif %}>
-                <button id='show-form' class="btn btn-primary">Info toevoegen</button>
-            </div>
-            <div id='form' {% if not form.errors %}hidden{% endif %}>
-                <form method="post" role="form">
-                    {{ form.hidden_tag() }}
-                    {{ render_field(form.naam, 'Naam') }}
-                    {{ render_field(form.email, 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.', type='email') }}
-                    {{ render_field(form.opmerking, 'Uw opmerking', rows=8) }}
-                    <button type="submit" class="btn btn-primary">Versturen</button>
-                </form>
-            </div>
         </div>
+    </div>
+
+    <hr>
+    <div class="text-center">
+        <p>Weet je meer over dit lied? Laat het me weten!</p>
+        <div id='pre-form' {% if form.errors %}hidden{% endif %}>
+            <button id='show-form' class="btn btn-primary">Info toevoegen</button>
+        </div>
+    </div>
+    <div id='form' {% if not form.errors %}hidden{% endif %}>
+        <form method="post" role="form">
+            {{ form.hidden_tag() }}
+            {{ render_field(form.naam, 'Naam') }}
+            {{ render_field(form.email, 'Email', 'E-mail adressen worden enkel gebruikt om uw opmerking te beantwoorden of hier verder op in te gaan.', type='email') }}
+            {{ render_field(form.opmerking, 'Uw opmerking', rows=8) }}
+            <button type="submit" class="btn btn-primary">Versturen</button>
+        </form>
     </div>
 {% endblock %}
 
