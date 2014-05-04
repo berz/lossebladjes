@@ -6,7 +6,9 @@ config.py
 pip-log.txt
 
 # directories
-db_repository
-fulres_scans
-less
-venv
+db_repository/
+scans/fulres_scans/
+scans/optimized/
+scans/optimized_bac/
+less/
+venv/
