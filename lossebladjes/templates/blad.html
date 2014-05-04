@@ -29,41 +29,13 @@
     <div class="row">
         <div id="scans" class="col-sm-6  top-margin">
             <div class="row center-block" style="display:table">
-
-                {% if blad.scans|length > 1 %}
-                <ol class="carousel-indicators">
-                    {% for scan in blad.scans %}
-                    <li data-target="#scans" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>
-                    {% endfor %}
-                </ol>
-                {% endif %}
-
-                {% if blad.scans|length > 1 %}
-                <a href="#scans" data-slide="prev" style="display: table-cell; vertical-align:middle; width:5%">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
-                </a>
-                {% endif %}
-
                 <div class="carousel slide col-xs-8; width:90%" data-interval='100'>
                     <div class="carousel-inner">
-                        {% for scan in blad.scans %}
-                        <div class="item text-center {% if loop.first %}active{% endif %}">
-                            <img src="{{ url_for('static', filename='scans/' + scan.filename)}}" alt="{{blad.titel}}" class="img-responsive small center-block height-responsive">
+                        <div class="item text-center active">
+                            <img src="{{ url_for('static', filename='scans/' + blad.scan_filename)}}" alt="{{blad.titel}}" class="img-responsive small center-block height-responsive">
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
-
-                {% if blad.scans|length > 1 %}
-                <a href="#scans" data-slide="next" style="display: table-cell; vertical-align:middle; width:5%">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </a>
-                {% endif %}
-
             </div>
             <div class="top-margin text-center">
                 <a id='hide' href='#' type="button" class="btn btn-default">
@@ -103,12 +75,6 @@
 
 {% block scripts %}
     <script>
-        {% if blad.scans|length > 1 %}
-        $('.carousel').carousel({
-            interval: 5000
-        })
-        {% endif %}
-
         $('#hide').on("click", function(){
             $('#meta').toggle();
             $('#scans').toggleClass('col-sm-6').toggleClass('col-sm-12');
