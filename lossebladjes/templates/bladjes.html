@@ -10,7 +10,7 @@
                 <th>naam</th>
                 <th>tekst</th>
                 <th>melodie</th>
-                <th>toegevoegd op</th>
+                <!-- <th>toegevoegd op</th> -->
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 <td><a href="{{ url_for('blad', blad_id=blad.id) }}">{{ blad.titel|truncate(50) }}</a></td>
                 <td>{% if blad.auteur %}{{blad.auteur|truncate(45)}}{% endif %}</td>
                 <td>{% if blad.melodie %}{{blad.melodie|truncate(45)}}{% endif %}</td>
-                <td>{{ blad.toegevoegd_op }}</td>
+                <!-- <td>{{ blad.toegevoegd_op }}</td> -->
             </tr>
         {% endfor %}
         </tbody>
