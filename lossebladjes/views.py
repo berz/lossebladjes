@@ -22,8 +22,11 @@ def bladjes():
 @app.route('/blad/<int:blad_id>', methods=['GET', 'POST'])
 def blad(blad_id):
     blad = Blad.query.get(blad_id)
-    next = Blad.query.filter(Blad.id > blad_id).order_by(Blad.id).first()
-    prev = Blad.query.filter(Blad.id < blad_id).order_by(Blad.id.desc()).first()
+
+    sorted_bladjes = Blad.query.order_by(Blad.titel).all()
+    i = sorted_bladjes.index(blad)
+    next = sorted_bladjes[i + 1] if blad != sorted_bladjes[-1] else None
+    prev = sorted_bladjes[i - 1] if blad != sorted_bladjes[0] else None
 
     form = forms.OpmerkingBijBlad()
     if form.validate_on_submit():
