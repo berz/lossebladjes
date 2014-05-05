@@ -43,7 +43,7 @@
                 <div class="carousel slide col-xs-8; width:90%" data-interval='100'>
                     <div class="carousel-inner">
                         <div class="item text-center active">
-                            <img src="{{ url_for('static', filename='scans/' + blad.scan_filename)}}" alt="{{blad.titel}}" class="img-responsive small center-block height-responsive">
+                            <img src="{{ url_for('static', filename='scans/' + blad.scan_filename)}}" alt="{{blad.titel}}" class="img-responsive center-block height-responsive small">
                         </div>
                     </div>
                 </div>
@@ -79,11 +79,10 @@
 {% block scripts %}
     <script>
         $('#hide').on("click", function(){
-            $('#meta').toggle();
+            $('#meta').toggleClass('col-sm-6').toggleClass('col-sm-12');
             $('#scans').toggleClass('col-sm-6').toggleClass('col-sm-12');
-            $('#hide .glyphicon').toggleClass('glyphicon-zoom-in').toggleClass('glyphicon-zoom-out');
             $('#scans .carousel-inner img').toggleClass('small');
-            $('.carousel').carousel('pause')
+            $('#hide .glyphicon').toggleClass('glyphicon-zoom-in').toggleClass('glyphicon-zoom-out');
         });
 
         $('#show-form').on("click", function(){

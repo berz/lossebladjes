@@ -6272,8 +6272,8 @@ td.visible-print {
     display: none !important;
   }
 }
-.top-margin { 
-    margin-top: 20px; 
+.top-margin {
+    margin-top: 20px;
 }
 
 .fill {
@@ -6285,16 +6285,10 @@ td.visible-print {
 
 .height-responsive {
     width: auto !important;
-    height: 225px !important;
-    max-height: 225px !important;
 }
 
-.small { 
-    max-height: 400px; 
-}
-
-.carousel-control { 
-    background-image: none !important;
+.small{
+    max-height: 600px !important;
 }
 
 .white {
